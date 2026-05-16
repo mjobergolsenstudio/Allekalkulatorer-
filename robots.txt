@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://allekalkulatorer.no/sitemap.xml
+
+# Ikke indekser eventuelle admin-sider
+Disallow: /admin/
+Disallow: /api/
