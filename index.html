@@ -205,16 +205,13 @@
 </script>
 
 <!-- ═══ GOOGLE ANALYTICS 4 ═══ -->
-<!-- Aktiver ved å bytte ut G-XXXXXXXXXX med din GA4-ID fra analytics.google.com -->
-<!--
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-08CTTL7WFQ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX', { page_path: window.location.pathname });
+  gtag('config', 'G-08CTTL7WFQ');
 </script>
--->
 
 <!-- ═══ GOOGLE SEARCH CONSOLE ═══ -->
 <!-- Lim inn din verification-meta fra Search Console (Innstillinger → Eiendomsverifisering → HTML-tag): -->
@@ -1675,7 +1672,7 @@ function calcFP() {
   const lønn=parseFloat(document.getElementById('fp-lønn').value);
   const grad=parseFloat(document.getElementById('fp-grad').value);
   const uker=parseFloat(document.getElementById('fp-uker').value);
-  const maks = 6*108568; // 6G
+  const maks = 6*108568;
   const grunnlag = Math.min(lønn, maks);
   const dagssats = grunnlag / 260;
   const totalt = dagssats * 5 * uker * grad;
@@ -1717,17 +1714,14 @@ function calcRR() {
 
 function calcSkatt() {
   const i=parseFloat(document.getElementById('skatt-i').value);
-  // 2024 satser (forenklet)
   const personfradrag = 88250;
   const minstefradrag = Math.min(i*0.46, 104450);
   const alminnelig = Math.max(0, i - personfradrag - minstefradrag) * 0.22;
-  // Trinnskatt
   let trinn = 0;
   if(i>999550) trinn += (i-999550)*0.174;
   if(i>651250) trinn += Math.min(i-651250,999550-651250)*0.134;
   if(i>241700) trinn += Math.min(i-241700,651250-241700)*0.109;
   if(i>208050) trinn += Math.min(i-208050,241700-208050)*0.039;
-  // Trygdeavgift
   const trygd = i * 0.078;
   const total = alminnelig + trinn + trygd;
   const effektiv = total/i*100;
@@ -1768,7 +1762,6 @@ function calcVal() {
   const b=parseFloat(document.getElementById('val-b').value);
   const fra=document.getElementById('val-fra').value;
   const til=document.getElementById('val-til').value;
-  // Kurser mot NOK (ca. mai 2025)
   const kurs={NOK:1,EUR:11.75,USD:10.65,GBP:13.55,SEK:0.99,DKK:1.57};
   const nok=b*kurs[fra];
   const res_val=nok/kurs[til];
@@ -1809,7 +1802,7 @@ function calcSol() {
   const p=parseFloat(document.getElementById('sol-p').value)/100;
   const kr=parseFloat(document.getElementById('sol-kr').value);
   const panel_a = a*p;
-  const prod = panel_a * 150; // ca. 150 kWh/m² i NO
+  const prod = panel_a * 150;
   res('sol-res',`<span class="result-num">${fmt(prod,0)} kWh/år</span><div class="result-detail">Panelflate: ${fmt(panel_a,1)} m²\nVerdi: ${fmt(prod*kr,0)} kr/år</div>`);
 }
 
@@ -1833,7 +1826,7 @@ function calcOpp() {
   const a=parseFloat(document.getElementById('opp-a').value);
   const g=parseFloat(document.getElementById('opp-g').value);
   const p=parseFloat(document.getElementById('opp-p').value);
-  const kwh=a*g*0.065; // estimat 65 W/m² per graddøgn
+  const kwh=a*g*0.065;
   res('opp-res',`<span class="result-num">${fmt(kwh*p,0)} kr/år</span><div class="result-detail">${fmt(kwh,0)} kWh/år estimert\n(basert på 65 Wh/m²/graddøgn)</div>`);
 }
 
